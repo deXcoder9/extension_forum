@@ -1,3 +1,4 @@
+let titleCountNumber = 0;
 const fetchData = async () => {
   let res = await fetch(
     "https://openapi.programming-hero.com/api/retro-forum/posts"
@@ -11,87 +12,107 @@ const fetchData = async () => {
 
 function createPost(postInfo) {
   const cardContaier = document.getElementById("cardContainer");
+  const titleAdded = document.getElementById("cardSelections");
+  const titleCount = document.getElementById("title-count");
   //   console.log(cardContaier);
   for (let post of postInfo) {
-    console.log(post.id);
-
-    const postItem = document.createElement("div");
-    if (post.isActive) {
-      postItem.innerHTML = `
-    <div id="${post.id}" class="flex lg:flex-row flex-col gap-x-5 mb-4 card-bg p-10">
-            <div class="relative flex justify-start "><img class="lg:h-[72px] h-[100px]  rounded-lg"
-                src="${post.image}" alt="">
-              <p class="h-3 w-3  bg-[#10B981] rounded-full absolute -top-1 -right-1"></p>
-            </div>
-            <div class=" mx-auto flex flex-col justify-start">
-              <div class="flex gap-4">
-                <p class="card-topic">#${post.category}</p>
-                <p class="card-topic">Author: ${post.author.name}</p>
-              </div>
-              <div class="lg:py-3">
-                <h4 class="card-head">${post.title}</h4>
-              </div>
-              <div class="lg:pb-5">
-                <p class="card-description lg:w-[560px] w-auto ">${post.description}</p>
-              </div>
-              <hr>
-              <div class="flex justify-between my-4">
-                <div class="flex gap-7">
-                  <p><i class="fa-regular fa-message" style="color: #b0b2b5;"></i> ${post.comment_count}</p>
+      console.log(titleCountNumber);
+      console.log(post.id);
+      
+      const postItem = document.createElement("div");
+      if (post.isActive) {
+          postItem.innerHTML = `
+          <div id="${post.id}" class="flex lg:flex-row flex-col gap-x-5 mb-4 card-bg p-10">
+          <div class="relative flex justify-start "><img class="lg:h-[72px] h-[100px]  rounded-lg"
+          src="${post.image}" alt="">
+          <p class="h-3 w-3  bg-[#10B981] rounded-full absolute -top-1 -right-1"></p>
+          </div>
+          <div class=" mx-auto flex flex-col justify-start">
+          <div class="flex gap-4">
+          <p class="card-topic">#${post.category}</p>
+          <p class="card-topic">Author: ${post.author.name}</p>
+          </div>
+          <div class="lg:py-3">
+          <h4 class="card-head">${post.title}</h4>
+          </div>
+          <div class="lg:pb-5">
+          <p class="card-description lg:w-[560px] w-auto ">${post.description}</p>
+          </div>
+          <hr>
+          <div class="flex justify-between my-4">
+          <div class="flex gap-7">
+          <p><i class="fa-regular fa-message" style="color: #b0b2b5;"></i> ${post.comment_count}</p>
                   <p><i class="fa-regular fa-eye" style="color: #a5a9b1;"></i> ${post.view_count}</p>
                   <p><i class="fa-regular fa-clock" style="color: #a7acb4;"></i> ${post.posted_time}</p>
-                </div>
-                <div class="w-10 bg-[#10B981] flex justify-center items-center rounded-3xl">
+                  </div>
+                  <div class="w-10 bg-[#10B981] flex justify-center items-center rounded-3xl">
                   <img class="h-6  " src="mail.png" alt="mail">
-                </div>
-              </div>
-            </div>
-          </div>
-    `;
-    } else {
-      postItem.innerHTML = `
-        <div id="${post.id}" class="flex lg:flex-row flex-col gap-x-5 mb-4 card-bg p-10">
-                <div class="relative flex justify-start "><img class="lg:h-[72px] h-[100px]  rounded-lg"
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  `;
+                } else {
+                    postItem.innerHTML = `
+                    <div id="${post.id}" class="flex lg:flex-row flex-col gap-x-5 mb-4 card-bg p-10">
+                    <div class="relative flex justify-start "><img class="lg:h-[72px] h-[100px]  rounded-lg"
                     src="${post.image}" alt="">
-                  <p class="h-3 w-3 bg-red-600 rounded-full absolute -top-1 -right-1"></p>
-                </div>
-                <div class=" mx-auto flex flex-col justify-start">
-                  <div class="flex gap-4">
+                    <p class="h-3 w-3 bg-red-600 rounded-full absolute -top-1 -right-1"></p>
+                    </div>
+                    <div class=" mx-auto flex flex-col justify-start">
+                    <div class="flex gap-4">
                     <p class="card-topic">#${post.category}</p>
                     <p class="card-topic">Author: ${post.author.name}</p>
-                  </div>
-                  <div class="lg:py-3">
+                    </div>
+                    <div class="lg:py-3">
                     <h4 class="card-head">${post.title}</h4>
-                  </div>
-                  <div class="lg:pb-5">
+                    </div>
+                    <div class="lg:pb-5">
                     <p class="card-description lg:w-[560px] w-auto ">${post.description}</p>
-                  </div>
-                  <hr>
-                  <div class="flex justify-between my-4">
+                    </div>
+                    <hr>
+                    <div class="flex justify-between my-4">
                     <div class="flex gap-7">
-                      <p><i class="fa-regular fa-message" style="color: #b0b2b5;"></i> ${post.comment_count}</p>
-                      <p><i class="fa-regular fa-eye" style="color: #a5a9b1;"></i> ${post.view_count}</p>
-                      <p><i class="fa-regular fa-clock" style="color: #a7acb4;"></i> ${post.posted_time}</p>
+                    <p><i class="fa-regular fa-message" style="color: #b0b2b5;"></i> ${post.comment_count}</p>
+                    <p><i class="fa-regular fa-eye" style="color: #a5a9b1;"></i> ${post.view_count}</p>
+                    <p><i class="fa-regular fa-clock" style="color: #a7acb4;"></i> ${post.posted_time}</p>
                     </div>
                     <div class="w-10 bg-[#10B981] flex justify-center items-center rounded-3xl">
-                      <img class="h-6  " src="mail.png" alt="mail">
+                    <img class="h-6  " src="mail.png" alt="mail">
                     </div>
-                  </div>
-                </div>
-              </div>
-        `;
-    }
-    cardContaier.appendChild(postItem);
-    // document.getElementById(post.id).classList.remove("card-border");
-
-    const card = document.getElementById(post.id);
-
-    card.addEventListener("click", () => {
+                    </div>
+                    </div>
+                    </div>
+                    `;
+                }
+                cardContaier.appendChild(postItem);
+                // document.getElementById(post.id).classList.remove("card-border");
+                
+                const card = document.getElementById(post.id);
+                
+                card.addEventListener("click", () => {
+                    titleCountNumber++;
       const cards = cardContaier.querySelectorAll(".flex");
       cards.forEach((card) => {
-        card.classList.remove("card-border");
-      });
-
+          card.classList.remove("card-border");
+        });
+        
+        const titleCard = document.createElement("div");
+        titleCard.classList.add(
+            "flex",
+            "gap-5",
+            "justify-between",
+            "items-center",
+        "px-3",
+        "bg-white",
+        "py-4",
+        "rounded-md",
+        "mb-3"
+      );
+      titleCard.innerHTML = `<h3 class="w-[212px] text-[16px] font-bold ">${post.title}</h3>
+     <p><i class="fa-regular fa-eye" style="color: #a5a9b1;"></i> <span>${post.view_count}</span></p>`;
+      titleAdded.appendChild(titleCard);
+      titleCount.innerText = titleCountNumber;
       card.classList.add("card-border");
     });
   }
