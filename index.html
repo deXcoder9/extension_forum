@@ -246,9 +246,9 @@
         <p class="text-white font-medium text-xl lg:w-[460px]">Share your favorite opinion and win and wp forum coffee
           mug!</p>
         <div class=" flex border-2 lg:w-[67%] bg-white rounded-full">
-          <input type="text" placeholder="Search here anything " class="rounded-full px-2">
+          <input id="inputField" type="text" placeholder="Search here anything " class="rounded-full px-2">
           <div class=" w-auto flex items-center ml-5 border-none outline-none">
-            <a class="btn rounded-full bg-[#797DFC] text-white">Search</a>
+            <a onclick="searchThrough()" id="searchbtn" class="btn rounded-full bg-[#797DFC] text-white">Search</a>
           </div>
         </div>
       </div>
@@ -296,6 +296,11 @@
       <p class="lg:w-[660px] title-description">Yes, you can run unit tests and view the results directly within the
         app. The integrated testing features allow for a streamlined .</p>
       <div class="jokesCOntainer flex flex-col-reverse lg:flex-row gap-7 ">
+        <!-- Loader -->
+        <div id="loading-spinner" class="hidden ml-[48%]  mt-12">
+          <span class="loading loading-dots loading-lg"></span>
+
+        </div>
         <div id="cardContainer" class=" flex-1 w-[100%] lg:w-auto ">
 
 
@@ -357,29 +362,12 @@
         app. The integrated testing features allow for a streamlined .</p>
       <!--! latest posts  -->
       <div id="latest__post_container" class="flex justify-between flex-col lg:flex-row w-[90%] mx-auto lg:w-full">
-        <!--cards  -->
-        <!-- <div class="mt-6">
-          <div
-            class="w-[373px] rounded-xl h-[470px] px-3 lg:px-7 py-5 border-[1px] border-gray-700 flex flex-col space-y-3">
-            <img class="rounded-xl" src="https://i.ibb.co/VYGSkLz/pexels-jeshootscom-442576.jpg" alt="">
-            <p>29 January 2024</p>
-            <h3 class="font-bold text-[18px]">What will a mars habitat force that impact in our daily life!!!</h3>
-            <p class="text-gray-500">Yes, you can run unit tests and view the results directly within the app. </p>
-            <div class="flex gap-4 items-center ">
-              <img class="h-[44px] rounded-full" src="https://i.ibb.co/z8zx95w/pexels-davide-de-giovanni-1649675.jpg"
-                alt="">
-              <div>
-                <h4>Cameron Williamson</h4>
-                <p>unknown</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
+
       </div>
     </section>
   </main>
   <footer class="flex justify-center text-center items-center flex-col space-y-5 py-36 mt-10 footer-bg">
-    <h1 class="text-4xl font-bold">ReTro</h1>
+    <h1 class="text-4xl font-bold">Archer</h1>
     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
       literature from 45 BC</p>
     <div class="flex gap-4 text-2xl">
