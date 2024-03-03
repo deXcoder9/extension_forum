@@ -16,12 +16,12 @@ function createPost(postInfo) {
   const titleCount = document.getElementById("title-count");
   //   console.log(cardContaier);
   for (let post of postInfo) {
-      console.log(titleCountNumber);
-      console.log(post.id);
-      
-      const postItem = document.createElement("div");
-      if (post.isActive) {
-          postItem.innerHTML = `
+    // console.log(titleCountNumber);
+    // console.log(post.id);
+
+    const postItem = document.createElement("div");
+    if (post.isActive) {
+      postItem.innerHTML = `
           <div id="${post.id}" class="flex lg:flex-row flex-col gap-x-5 mb-4 card-bg p-10">
           <div class="relative flex justify-start "><img class="lg:h-[72px] h-[100px]  rounded-lg"
           src="${post.image}" alt="">
@@ -52,8 +52,8 @@ function createPost(postInfo) {
                   </div>
                   </div>
                   `;
-                } else {
-                    postItem.innerHTML = `
+    } else {
+      postItem.innerHTML = `
                     <div id="${post.id}" class="flex lg:flex-row flex-col gap-x-5 mb-4 card-bg p-10">
                     <div class="relative flex justify-start "><img class="lg:h-[72px] h-[100px]  rounded-lg"
                     src="${post.image}" alt="">
@@ -84,25 +84,25 @@ function createPost(postInfo) {
                     </div>
                     </div>
                     `;
-                }
-                cardContaier.appendChild(postItem);
-                // document.getElementById(post.id).classList.remove("card-border");
-                
-                const card = document.getElementById(post.id);
-                
-                card.addEventListener("click", () => {
-                    titleCountNumber++;
+    }
+    cardContaier.appendChild(postItem);
+    // document.getElementById(post.id).classList.remove("card-border");
+
+    const card = document.getElementById(post.id);
+
+    card.addEventListener("click", () => {
+      titleCountNumber++;
       const cards = cardContaier.querySelectorAll(".flex");
       cards.forEach((card) => {
-          card.classList.remove("card-border");
-        });
-        
-        const titleCard = document.createElement("div");
-        titleCard.classList.add(
-            "flex",
-            "gap-5",
-            "justify-between",
-            "items-center",
+        card.classList.remove("card-border");
+      });
+
+      const titleCard = document.createElement("div");
+      titleCard.classList.add(
+        "flex",
+        "gap-5",
+        "justify-between",
+        "items-center",
         "px-3",
         "bg-white",
         "py-4",
@@ -118,4 +118,42 @@ function createPost(postInfo) {
   }
 }
 
+const loadData = async () => {
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/retro-forum/latest-posts"
+  );
+  const data = await res.json();
+  console.log(data);
+  displyingLatestNews(data);
+};
+
+const displyingLatestNews = (data) => {
+  const latestNEwsContaienr = document.getElementById("latest__post_container");
+  for (const news of data) {
+    // console.log(news.cover_image);
+    const newDiv = document.createElement("div");
+    newDiv.innerHTML = `
+    <div class="mt-6">
+          <div
+            class="w-[373px] rounded-xl h-[470px] px-3 lg:px-7 py-5 border-[1px] border-gray-700 flex flex-col space-y-3">
+            <img class="rounded-xl" src="${news.cover_image}" alt="">
+            <p>29 January 2024</p>
+            <h3 class="font-bold text-[18px]">${news.title}</h3>
+            <p class="text-gray-500">${news.description} </p>
+            <div class="flex gap-4 items-center ">
+              <img class="h-[44px] rounded-full" src="${news.profile_image}"
+                alt="">
+              <div>
+                <h4>Cameron Williamson</h4>
+                <p>unknown</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    `;
+    latestNEwsContaienr.appendChild(newDiv);
+  }
+};
+
 fetchData();
+loadData();
